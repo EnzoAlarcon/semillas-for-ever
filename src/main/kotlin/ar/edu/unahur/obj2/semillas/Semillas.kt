@@ -27,9 +27,13 @@ open class Menta(override var altura: Double, override val anioObtencion: Int) :
 open class Soja (override var altura: Double, override val anioObtencion: Int) : Planta(altura, anioObtencion) {
 
     override fun toleranciaAlSol(): Int {
-        if (this.altura < 0.5) {return 6}
-        else if (this.altura < 1.0) {return 8}
-        else {return 12}
+        val resultado : Int
+
+        if (this.altura < 0.5) {resultado = 6}
+        else if (this.altura < 1.0) {resultado = 8}
+        else {resultado = 12}
+
+        return resultado
     }
 
     override fun daNuevasSemillas(): Boolean {
@@ -44,8 +48,11 @@ open class Soja (override var altura: Double, override val anioObtencion: Int) :
 class Quinoa(var espacioQueOcupa: Double, override val anioObtencion: Int) : Planta(espacioQueOcupa, anioObtencion) {
 
     override fun toleranciaAlSol(): Int {
-        if (espacioQueOcupa < 0.3) {return 10}
+        val resultado : Int
+
+        if (espacioQueOcupa < 0.3) {resultado = 10}
         else {return super.toleranciaAlSol()}
+        return resultado
     }
 
     override fun daNuevasSemillas(): Boolean {
