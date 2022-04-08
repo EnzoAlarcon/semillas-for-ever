@@ -1,6 +1,6 @@
 package ar.edu.unahur.obj2.semillas
 
-open class Planta(open var altura: Double, open val anioObtencion: Int) {
+abstract class Planta(open var altura: Double, open val anioObtencion: Int) {
 
     open fun toleranciaAlSol() = 7
 
@@ -14,7 +14,7 @@ open class Planta(open var altura: Double, open val anioObtencion: Int) {
 
 }
 
-open class Menta(override var altura: Double, override val anioObtencion: Int) : Planta(altura, anioObtencion) {
+open class Menta(altura: Double, anioObtencion: Int) : Planta(altura, anioObtencion) {
 
     override fun daNuevasSemillas() : Boolean {
         return super.daNuevasSemillas() || this.altura > 0.4
@@ -24,7 +24,7 @@ open class Menta(override var altura: Double, override val anioObtencion: Int) :
 
 }
 
-open class Soja (override var altura: Double, override val anioObtencion: Int) : Planta(altura, anioObtencion) {
+open class Soja (altura: Double, anioObtencion: Int) : Planta(altura, anioObtencion) {
 
     override fun toleranciaAlSol(): Int {
         val resultado : Int
@@ -45,7 +45,7 @@ open class Soja (override var altura: Double, override val anioObtencion: Int) :
 
 }
 
-class Quinoa(var espacioQueOcupa: Double, override val anioObtencion: Int) : Planta(espacioQueOcupa, anioObtencion) {
+class Quinoa(var espacioQueOcupa: Double, anioObtencion: Int) : Planta(espacioQueOcupa, anioObtencion) {
 
     override fun toleranciaAlSol(): Int {
         val resultado : Int
@@ -63,7 +63,7 @@ class Quinoa(var espacioQueOcupa: Double, override val anioObtencion: Int) : Pla
 
 }
 
-class SojaTransgenica(override var altura: Double, override val anioObtencion: Int) : Soja(altura, anioObtencion) {
+class SojaTransgenica(altura: Double, anioObtencion: Int) : Soja(altura, anioObtencion) {
 
     override fun daNuevasSemillas(): Boolean {
         return false
@@ -71,7 +71,7 @@ class SojaTransgenica(override var altura: Double, override val anioObtencion: I
 
 }
 
-class Peperina(override var altura: Double, override val anioObtencion: Int) : Menta(altura, anioObtencion) {
+class Peperina(altura: Double, anioObtencion: Int) : Menta(altura, anioObtencion) {
 
     override fun espacioQueOcupa(): Double {
         return super.espacioQueOcupa() * 2
