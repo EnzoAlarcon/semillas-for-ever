@@ -1,6 +1,6 @@
 package ar.edu.unahur.obj2.semillas
 
-abstract class Planta(open var altura: Double, open val anioObtencion: Int) {
+abstract class Planta(var altura: Double, val anioObtencion: Int) {
 
     open fun toleranciaAlSol() = 7
 
