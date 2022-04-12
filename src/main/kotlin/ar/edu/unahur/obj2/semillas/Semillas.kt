@@ -3,15 +3,12 @@ package ar.edu.unahur.obj2.semillas
 abstract class Planta(var altura: Double, val anioObtencion: Int) {
 
     open fun toleranciaAlSol() = 7
-
     fun esFuerte() : Boolean {
         return this.toleranciaAlSol() > 9
     }
-
     open fun daNuevasSemillas() : Boolean {
         return this.esFuerte()
     }
-
 }
 
 open class Menta(altura: Double, anioObtencion: Int) : Planta(altura, anioObtencion) {
@@ -19,9 +16,7 @@ open class Menta(altura: Double, anioObtencion: Int) : Planta(altura, anioObtenc
     override fun daNuevasSemillas() : Boolean {
         return super.daNuevasSemillas() || this.altura > 0.4
     }
-
     open fun espacioQueOcupa() = this.altura + 1
-
 }
 
 open class Soja (altura: Double, anioObtencion: Int) : Planta(altura, anioObtencion) {
@@ -41,8 +36,6 @@ open class Soja (altura: Double, anioObtencion: Int) : Planta(altura, anioObtenc
     }
 
     fun espacioQueOcupa() = this.altura / 2
-
-
 }
 
 class Quinoa(var espacioQueOcupa: Double, anioObtencion: Int) : Planta(espacioQueOcupa, anioObtencion) {
@@ -68,7 +61,6 @@ class SojaTransgenica(altura: Double, anioObtencion: Int) : Soja(altura, anioObt
     override fun daNuevasSemillas(): Boolean {
         return false
     }
-
 }
 
 class Peperina(altura: Double, anioObtencion: Int) : Menta(altura, anioObtencion) {

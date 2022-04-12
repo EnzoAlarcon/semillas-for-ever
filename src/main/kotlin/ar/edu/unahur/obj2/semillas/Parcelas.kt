@@ -25,7 +25,6 @@ class Parcelas(val ancho: Int, val largo: Int, val horasAlSol: Int, var plantas 
         if (this.hayLugarParaPlantar() || this.plantaToleraElSolDeParcela(planta)) {
             this.plantas.add(planta)
         }
-        else {error("La planta no puede ser plantada en esta parcela")}
+        else {error("error")}
     }
-
 }
