@@ -16,6 +16,7 @@ class ParcelasTest : DescribeSpec ({
             parcela1.cantMaximaDePlantas().shouldBe(4)
         }
     }
+
     describe("Parcela1 se agrega 4 soja de mas de 1 metro") {
         it("no tiene complicaciones") {
             parcela1.tieneComplicaciones().shouldBeFalse()

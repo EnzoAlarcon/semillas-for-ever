@@ -53,7 +53,6 @@ class Quinoa(var espacioQueOcupa: Double, anioObtencion: Int) : Planta(espacioQu
     fun esParcelaIdeal(parcela: Parcelas) : Boolean {
         return parcela.plantas.all{ p : Planta -> p.altura < 1.5 }
     }
-
 }
 
 class SojaTransgenica(altura: Double, anioObtencion: Int) : Soja(altura, anioObtencion) {
