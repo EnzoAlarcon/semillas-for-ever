@@ -17,25 +17,23 @@ open class Menta(altura: Double, anioObtencion: Int) : Planta(altura, anioObtenc
         return super.daNuevasSemillas() || this.altura > 0.4
     }
     open fun espacioQueOcupa() = this.altura + 1
+    fun esParcelaIdeal(parcela: Parcelas) : Boolean = parcela.superficie() > 6
 }
 
 open class Soja (altura: Double, anioObtencion: Int) : Planta(altura, anioObtencion) {
 
     override fun toleranciaAlSol(): Int {
-        val resultado : Int
-
-        if (this.altura < 0.5) {resultado = 6}
-        else if (this.altura < 1.0) {resultado = 8}
-        else {resultado = 12}
-
-        return resultado
+        if (this.altura < 0.5) {return 6}
+        else if (this.altura < 1.0) {return 8}
+        else {return 12}
     }
-
     override fun daNuevasSemillas(): Boolean {
         return super.daNuevasSemillas() || this.anioObtencion < 2007 && (this.altura < 0.9 && this.altura > 0.75)
     }
-
     fun espacioQueOcupa() = this.altura / 2
+    open fun esParcelaIdeal(parcela: Parcelas) : Boolean {
+        return parcela.horasAlSol == this.toleranciaAlSol()
+    }
 }
 
 class Quinoa(var espacioQueOcupa: Double, anioObtencion: Int) : Planta(espacioQueOcupa, anioObtencion) {
@@ -47,11 +45,13 @@ class Quinoa(var espacioQueOcupa: Double, anioObtencion: Int) : Planta(espacioQu
         else {return super.toleranciaAlSol()}
         return resultado
     }
-
     override fun daNuevasSemillas(): Boolean {
         if (this.anioObtencion > 2001) {return true}
         else if (this.anioObtencion < 2008) {return true}
         else {return super.daNuevasSemillas()}
+    }
+    fun esParcelaIdeal(parcela: Parcelas) : Boolean {
+        return parcela.plantas.all{ p : Planta -> p.altura < 1.5 }
     }
 
 }
@@ -60,6 +60,9 @@ class SojaTransgenica(altura: Double, anioObtencion: Int) : Soja(altura, anioObt
 
     override fun daNuevasSemillas(): Boolean {
         return false
+    }
+    override fun esParcelaIdeal(parcela: Parcelas) : Boolean {
+        return parcela.plantas.size == 0
     }
 }
 

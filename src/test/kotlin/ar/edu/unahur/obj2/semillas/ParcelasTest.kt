@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldBe
 
 class ParcelasTest : DescribeSpec ({
     val soja = Soja(1.2, 2010)
-    val plantas = mutableListOf<Planta>()
+    val plantas = mutableListOf<Planta>(soja,soja,soja,soja)
     val parcela1 = Parcelas(20, 1, 10, plantas)
 
     describe("Parcela 1") {
@@ -16,17 +16,12 @@ class ParcelasTest : DescribeSpec ({
             parcela1.cantMaximaDePlantas().shouldBe(4)
         }
     }
-    describe("Parcela se agrega 4 soja de mas de 1 metro") {
-
+    describe("Parcela1 se agrega 4 soja de mas de 1 metro") {
         it("no tiene complicaciones") {
-            parcela1.plantar(soja)
-            parcela1.plantar(soja)
-            parcela1.plantar(soja)
-            parcela1.plantar(soja)
             parcela1.tieneComplicaciones().shouldBeFalse()
         }
 
-        it("Tiene complicaciones"){
+        it("Tiene complicaciones si se agrega 1 soja mas"){
             shouldThrowAny {
                 parcela1.plantar(soja)
             }

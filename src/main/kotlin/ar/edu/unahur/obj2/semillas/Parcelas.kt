@@ -8,23 +8,19 @@ class Parcelas(val ancho: Int, val largo: Int, val horasAlSol: Int, var plantas 
         if (ancho > largo) {return this.superficie() / 5}
         else {return this.superficie() / 3 + largo}
     }
-
     fun tieneComplicaciones() : Boolean {
-        return !plantas.all({ p : Planta -> p.toleranciaAlSol() > horasAlSol })
+        return plantas.any{ p : Planta -> p.toleranciaAlSol() < horasAlSol }
     }
-
     fun hayLugarParaPlantar() : Boolean {
         return plantas.size < this.cantMaximaDePlantas()
     }
-
     fun plantaToleraElSolDeParcela(planta : Planta) : Boolean {
-        return horasAlSol < planta.toleranciaAlSol()
+        return this.horasAlSol < planta.toleranciaAlSol() + 2
     }
-
     fun plantar(planta: Planta){
-        if (this.hayLugarParaPlantar() || this.plantaToleraElSolDeParcela(planta)) {
-            this.plantas.add(planta)
+        if (!this.hayLugarParaPlantar() || this.plantaToleraElSolDeParcela(planta)) {
+            error("No puede plantarse esta planta en la parcela")
         }
-        else {error("error")}
+        else { plantas.add(planta) }
     }
 }
