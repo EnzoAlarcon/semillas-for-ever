@@ -60,7 +60,6 @@ class PlantasTest : DescribeSpec ({
             menta.espacioQueOcupa().shouldBe(2)
         }
     }
-
     // una menta de solo 0.3 metros, no debería dar semillas y ocuparía 1.3 metros cuadrados de espacio.
     describe("Planta Menta 2") {
         val menta2 = Menta(0.3, 2021)
@@ -69,7 +68,6 @@ class PlantasTest : DescribeSpec ({
             menta2.espacioQueOcupa().shouldBe(1.3)
         }
     }
-
     // si tuviesemos una soja de 0.6 metros y de semilla de 2009,
     // la planta tendría una tolerancia al sol de 8 horas, no daría semillas y ocuparía 0.3 metros cuadrados.
     describe("Planta Soja") {
@@ -80,7 +78,6 @@ class PlantasTest : DescribeSpec ({
             soja1.espacioQueOcupa().shouldBe(0.3)
         }
     }
-
     //si tenemos una quinoa que ocupa 0.2 m2 y su semilla de origen es de 2010, se trata de una planta que da semillas.
     describe("Planta Quinoa") {
         val quinoa = Quinoa(0.2,2010)
@@ -88,7 +85,6 @@ class PlantasTest : DescribeSpec ({
             quinoa.daNuevasSemillas().shouldBeTrue()
         }
     }
-
     // si tenemos una planta que ocupa 0.9 m2 pero cuya semilla de origen es de 2006, también da semillas.
     describe("Planta Quinoa 2") {
         val quinoa2 = Quinoa(0.9, 2006)
@@ -96,14 +92,12 @@ class PlantasTest : DescribeSpec ({
             quinoa2.daNuevasSemillas().shouldBeTrue()
         }
     }
-
     describe("Planta Soja Trans") {
         val sojaTrans = SojaTransgenica(2.0, 2009)
         it("no da semillas") {
             sojaTrans.daNuevasSemillas().shouldBeFalse()
         }
     }
-
     describe("Planta peperina") {
         val peperina = Peperina(1.0, 2021)
         it("Da semillas nuevas y ocupa 4 m2") {
@@ -123,7 +117,6 @@ class PlantasTest : DescribeSpec ({
             menta.esParcelaIdeal(parcelaNoIdeal).shouldBeFalse()
         }
     }
-
     describe("test parcela ideal Quinoa") {
         val quinoa = Quinoa(1.0,2018)
         it("Es parcela ideal para la quinoa") {
@@ -135,7 +128,6 @@ class PlantasTest : DescribeSpec ({
             quinoa.esParcelaIdeal(parcelaNoIdeal).shouldBeFalse()
         }
     }
-
     describe("test parcela ideal Soja") {
         it("Es parcela ideal para la soja") {
             val parcelaIdeal = Parcelas(20,3, 12, mutableListOf(soja))
@@ -146,7 +138,6 @@ class PlantasTest : DescribeSpec ({
             soja.esParcelaIdeal(parcelaNoIdeal).shouldBeFalse()
         }
     }
-
     describe("test parcela ideal soja trans") {
         val sojaTrans = SojaTransgenica(1.2, 2018)
         it("Es parcela ideal para la soja trans") {
