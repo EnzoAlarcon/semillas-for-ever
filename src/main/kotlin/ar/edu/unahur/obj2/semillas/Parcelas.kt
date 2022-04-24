@@ -1,6 +1,6 @@
 package ar.edu.unahur.obj2.semillas
 
-class Parcelas(val ancho: Int, val largo: Int, val horasAlSol: Int, var plantas : MutableList<Planta>) {
+open class Parcelas(val ancho: Int, val largo: Int, val horasAlSol: Int, var plantas : MutableList<Planta>) {
 
     fun superficie() = ancho * largo
 
@@ -23,4 +23,33 @@ class Parcelas(val ancho: Int, val largo: Int, val horasAlSol: Int, var plantas 
         }
         else { plantas.add(planta) }
     }
+    fun cantidadDePlantas() : Int {
+        return plantas.size
+    }
+
+    open fun porcentajePlantasBienAsociadas() : Int {return 0}
+
+}
+
+class ParcelasEcologicas(ancho: Int, largo: Int, horasAlSol: Int, plantas : MutableList<Planta>) : Parcelas(ancho, largo, horasAlSol, plantas) {
+    fun seAsociaBien(planta: Planta) : Boolean{
+        return !this.tieneComplicaciones() && planta.esParcelaIdeal(this)
+    }
+
+    override fun porcentajePlantasBienAsociadas(): Int {
+        val plantasBienAsociadas = plantas.count { this.seAsociaBien(it) }
+        return plantasBienAsociadas * 100 / this.cantidadDePlantas()
+    }
+}
+
+class ParcelasIndustriales(ancho: Int, largo: Int, horasAlSol: Int, plantas : MutableList<Planta>) : Parcelas(ancho, largo, horasAlSol, plantas) {
+    fun seAsociaBien(planta: Planta) : Boolean{
+        return this.cantidadDePlantas() <= 2 && planta.esFuerte()
+    }
+
+    override fun porcentajePlantasBienAsociadas(): Int {
+        val plantasBienAsociadas = plantas.count { this.seAsociaBien(it) }
+        return plantasBienAsociadas * 100 / this.cantidadDePlantas()
+    }
+
 }

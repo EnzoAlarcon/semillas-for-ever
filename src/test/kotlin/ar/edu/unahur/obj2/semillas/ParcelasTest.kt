@@ -3,6 +3,7 @@ package ar.edu.unahur.obj2.semillas
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 
 class ParcelasTest : DescribeSpec ({
@@ -25,6 +26,22 @@ class ParcelasTest : DescribeSpec ({
             shouldThrowAny {
                 parcela1.plantar(soja)
             }
+        }
+    }
+    describe("Parcela ecologica") {
+        val menta1 = Menta(1.0, 2021)
+        val menta2 = Menta(1.3, 2020)
+        val parcelaEco = ParcelasEcologicas(20, 12, 7, mutableListOf(menta1, menta2))
+        it("Se asocia bien") {
+            parcelaEco.seAsociaBien(menta2).shouldBeTrue()
+        }
+    }
+    describe("Parcela Industrial") {
+        val soja1 = Soja(1.0, 2021)
+        val soja2 = Soja(1.3, 2020)
+        val parcelaIndustrial = ParcelasIndustriales(20, 12, 7, mutableListOf(soja1, soja2))
+        it ("Se asocia bien") {
+            parcelaIndustrial.seAsociaBien(soja1).shouldBeTrue()
         }
     }
 })

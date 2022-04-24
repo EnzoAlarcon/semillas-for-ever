@@ -9,6 +9,7 @@ abstract class Planta(var altura: Double, val anioObtencion: Int) {
     open fun daNuevasSemillas() : Boolean {
         return this.esFuerte()
     }
+    open fun esParcelaIdeal(parcela: Parcelas) : Boolean = true
 }
 
 open class Menta(altura: Double, anioObtencion: Int) : Planta(altura, anioObtencion) {
@@ -17,7 +18,7 @@ open class Menta(altura: Double, anioObtencion: Int) : Planta(altura, anioObtenc
         return super.daNuevasSemillas() || this.altura > 0.4
     }
     open fun espacioQueOcupa() = this.altura + 1
-    fun esParcelaIdeal(parcela: Parcelas) : Boolean = parcela.superficie() > 6
+    override fun esParcelaIdeal(parcela: Parcelas) : Boolean = parcela.superficie() > 6
 }
 
 open class Soja (altura: Double, anioObtencion: Int) : Planta(altura, anioObtencion) {
@@ -31,7 +32,7 @@ open class Soja (altura: Double, anioObtencion: Int) : Planta(altura, anioObtenc
         return super.daNuevasSemillas() || this.anioObtencion < 2007 && (this.altura < 0.9 && this.altura > 0.75)
     }
     fun espacioQueOcupa() = this.altura / 2
-    open fun esParcelaIdeal(parcela: Parcelas) : Boolean {
+    override fun esParcelaIdeal(parcela: Parcelas) : Boolean {
         return parcela.horasAlSol == this.toleranciaAlSol()
     }
 }
@@ -50,7 +51,7 @@ class Quinoa(var espacioQueOcupa: Double, anioObtencion: Int) : Planta(espacioQu
         else if (this.anioObtencion < 2008) {return true}
         else {return super.daNuevasSemillas()}
     }
-    fun esParcelaIdeal(parcela: Parcelas) : Boolean {
+    override fun esParcelaIdeal(parcela: Parcelas) : Boolean {
         return parcela.plantas.all{ p : Planta -> p.altura < 1.5 }
     }
 
