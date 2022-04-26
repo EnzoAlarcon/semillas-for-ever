@@ -11,21 +11,22 @@ val parcela1 = ParcelasEcologicas(20, 1, 10, mutableListOf(soja,menta,quinoa))
 val parcela2 = ParcelasIndustriales(20, 1, 10, mutableListOf(soja,soja))
 val parcela3 = ParcelasEcologicas(20, 1, 10, mutableListOf(quinoa))
 val parcela4 = ParcelasEcologicas(20, 1, 10, mutableListOf(quinoa, quinoa, quinoa, quinoa, quinoa))
-val listaParcelas = mutableListOf<Parcelas>()
 
 class IntaTest : DescribeSpec({
-    val inta1 = Inta(listaParcelas)
+    Inta.agregarParcela(parcela1)
+    Inta.agregarParcela(parcela2)
+    Inta.agregarParcela(parcela3)
     describe("Creacion de inta con 3 parcelas") {
-        inta1.agregarParcela(parcela1)
-        inta1.agregarParcela(parcela2)
-        inta1.agregarParcela(parcela3)
+        Inta.agregarParcela(parcela1)
+        Inta.agregarParcela(parcela2)
+        Inta.agregarParcela(parcela3)
         it("el promedio de plantas es 2") {
-            inta1.promedioDePlantas().shouldBe(2)
+            Inta.promedioDePlantas().shouldBe(2)
         }
         describe("Parcela mas autosustentable") {
-            inta1.agregarParcela(parcela4)
+            Inta.agregarParcela(parcela4)
             it("parcela 4") {
-                inta1.masAutosustentable().shouldBe(parcela4)
+                Inta.masAutosustentable().shouldBe(parcela4)
             }
         }
     }
